@@ -61,7 +61,7 @@ resource "azurerm_application_gateway" "example" {
 
   frontend_port {
     name = local.frontend_port_name
-    port = 80
+    port = 443
   }
 
   frontend_ip_configuration {
@@ -86,7 +86,9 @@ resource "azurerm_application_gateway" "example" {
     name                           = local.listener_name
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = local.frontend_port_name
-    protocol                       = "Http"
+    protocol                       = "Https"
+    host_name = "demo.com"
+    ssl_certificate_name = "demo"
   }
 
   request_routing_rule {
@@ -95,6 +97,11 @@ resource "azurerm_application_gateway" "example" {
     http_listener_name         = local.listener_name
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
+  }
+
+  ssl_certificate {
+    name = "demo"
+    key_vault_secret_id = azurerm_key_vault_certificate.democert.secret_id
   }
 
   identity {
