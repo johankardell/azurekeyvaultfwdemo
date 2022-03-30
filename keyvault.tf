@@ -12,7 +12,7 @@ resource "azurerm_key_vault" "kv" {
   network_acls {
     bypass         = "AzureServices"
     default_action = "Deny"
-    ip_rules       = [azurerm_public_ip.ubuntu.ip_address,  azurerm_public_ip.example.ip_address, "155.4.130.187/32", "98.128.167.12/32"]
+    ip_rules       = [azurerm_public_ip.ubuntu.ip_address,  "155.4.130.187/32", "98.128.167.12/32"]
   }
 }
 
