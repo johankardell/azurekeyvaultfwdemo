@@ -19,7 +19,7 @@ The ideal solution would be to allow Trusted Services to access key vault using 
 | KV Soft delete 90 days + FW allow Appgw public IP | No |
 | KV Soft delete 90 days + FW allow Appgw public IP + Service endpoint | No |
 | Trusted Services + KV Soft delete 90 days + Service endpoints | No |
-
+| Trusted Services + KV Soft delete 90 days | No |
 
 ### Error messages
 
