@@ -67,6 +67,11 @@ resource "azurerm_key_vault_certificate" "democert" {
       validity_in_months = 12
     }
   }
+
+  depends_on = [
+    azurerm_role_assignment.appgwaccess,
+    azurerm_role_assignment.useraccess
+  ]
 }
 
 resource "azurerm_role_assignment" "appgwaccess" {
@@ -80,6 +85,7 @@ resource "azurerm_role_assignment" "useraccess" {
   scope                = azurerm_key_vault.kv.id
   role_definition_name = "Key vault administrator"
 }
+
 # resource "azurerm_key_vault_secret" "example" {
 #   name         = "secret-sauce"
 #   value        = "szechuan"

@@ -97,7 +97,7 @@ resource "azurerm_application_gateway" "appgw" {
 
   ssl_certificate {
     name                = "demo"
-    key_vault_secret_id = azurerm_key_vault_certificate.democert.versionless_secret_id
+    key_vault_secret_id = azurerm_key_vault_certificate.democert.versionless_secret_id // Docs recommend using versionless_secret_id
   }
 
   identity {
