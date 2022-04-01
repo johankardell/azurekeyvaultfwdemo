@@ -11,6 +11,10 @@ resource "azurerm_role_assignment" "ubuntuaccess" {
 
 data "azurerm_client_config" "current" {}
 
-output "publicip" {
+output "ubuntupublicip" {
   value = azurerm_public_ip.ubuntu.ip_address
+}
+
+output "appgwpublicip" {
+  value = azurerm_public_ip.appgw.ip_address
 }

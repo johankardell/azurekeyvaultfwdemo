@@ -11,7 +11,8 @@ resource "azurerm_key_vault" "kv" {
   network_acls {
     bypass         = "AzureServices" // AzureServices or None
     default_action = "Deny"
-    ip_rules       = [azurerm_public_ip.ubuntu.ip_address, azurerm_public_ip.appgw.ip_address, "98.128.167.12/32"] // Last IP was my IP at the time of writing this
+    ip_rules       = [azurerm_public_ip.ubuntu.ip_address, "98.128.167.12/32"] // Last IP was my IP at the time of writing this
+    virtual_network_subnet_ids = [azurerm_subnet.frontend.id, azurerm_subnet.iaas.id]
   }
 }
 
