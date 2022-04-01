@@ -10,7 +10,7 @@ resource "azurerm_subnet" "iaas" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.sample.name
   address_prefixes     = ["192.168.0.0/24"]
-  service_endpoints    = ["Microsoft.KeyVault"]
+  # service_endpoints    = ["Microsoft.KeyVault"]
 }
 
 resource "azurerm_network_security_group" "iaas" {

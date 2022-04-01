@@ -1,21 +1,19 @@
-
 resource "azurerm_key_vault" "kv" {
-  name                        = "kv-fw-demo-jk-2022"
-  location                    = azurerm_resource_group.rg.location
-  resource_group_name         = azurerm_resource_group.rg.name
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days  = 90
-  purge_protection_enabled    = false
-  enable_rbac_authorization   = true
+  name                       = "kv-fw-demo-jk-2022"
+  location                   = azurerm_resource_group.rg.location
+  resource_group_name        = azurerm_resource_group.rg.name
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  soft_delete_retention_days = 90
+  purge_protection_enabled   = false
+  enable_rbac_authorization  = true
 
   sku_name = "standard"
   network_acls {
-    bypass         = "AzureServices"
+    bypass         = "AzureServices" // AzureServices or None
     default_action = "Deny"
-    ip_rules       = [azurerm_public_ip.ubuntu.ip_address,  "155.4.130.187/32", "98.128.167.12/32"]
+    ip_rules       = [azurerm_public_ip.ubuntu.ip_address, azurerm_public_ip.appgw.ip_address, "98.128.167.12/32"] // Last IP was my IP at the time of writing this
   }
 }
-
 
 resource "azurerm_key_vault_certificate" "democert" {
   name         = "demo"
