@@ -1,5 +1,5 @@
 resource "azurerm_key_vault" "kv" {
-  name                       = "kv-fw-demo-jk-5"
+  name                       = "kv-fw-demo-jk-8"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   tenant_id                  = data.azurerm_client_config.current.tenant_id
@@ -11,7 +11,8 @@ resource "azurerm_key_vault" "kv" {
   network_acls {
     bypass         = "AzureServices" // AzureServices or None
     default_action = "Deny"
-    ip_rules       = [azurerm_public_ip.ubuntu.ip_address, "98.128.167.12/32"] // Last IP was my IP at the time of writing this
+    // Last IP was my IP at the time of writing this. Has to be included, at least if Terraform is creating the certs or tries to read metadata for the cert.
+    ip_rules       = [azurerm_public_ip.ubuntu.ip_address, "98.128.167.12/32"] 
     virtual_network_subnet_ids = [azurerm_subnet.frontend.id, azurerm_subnet.iaas.id]
     # virtual_network_subnet_ids = [azurerm_subnet.iaas.id]
   }

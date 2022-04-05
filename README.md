@@ -30,3 +30,12 @@ Appgw has not been giving me the most clear error messages (like I wrote in the 
 ```
 Error: waiting for create/update of Application Gateway: (Name "appgw" / Resource Group "keyvault-demo"): Code="InternalServerError" Message="An error occurred." Details=[]
 ```
+
+## Conclusion
+Even if the docs are a bit vague on the details on how Trusted services work it seems like the minimal configuration allowing Application gateway to get certs from Keyvault is:
+* Key vault soft delete 7 days
+* Service endpoints for Keyvault enabled on subnet for AppGW
+* Key vault FW allowing Trusted services
+* Key vault FW allowing AppGW subnet using Service endpoints
+
+This was an interesting deep dive in Keyvault, and my initial understanding (that just allowing Trusted services) would be enough for AppGW to get a cert, was wrong.
