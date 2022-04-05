@@ -1,18 +1,19 @@
 resource "azurerm_key_vault" "kv" {
-  name                       = "kv-fw-demo-jk-2022"
+  name                       = "kv-fw-demo-jk-5"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name
   tenant_id                  = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days = 90
+  soft_delete_retention_days = 7
   purge_protection_enabled   = false
   enable_rbac_authorization  = true
 
-  sku_name = "standard"
+  sku_name = "premium"
   network_acls {
     bypass         = "AzureServices" // AzureServices or None
     default_action = "Deny"
     ip_rules       = [azurerm_public_ip.ubuntu.ip_address, "98.128.167.12/32"] // Last IP was my IP at the time of writing this
     virtual_network_subnet_ids = [azurerm_subnet.frontend.id, azurerm_subnet.iaas.id]
+    # virtual_network_subnet_ids = [azurerm_subnet.iaas.id]
   }
 }
 

@@ -15,6 +15,7 @@ The ideal solution would be to allow Trusted Services to access key vault using 
 | Trusted Services + KV Soft delete 90 days + FW allow Appgw public IP + Service endpoints      | Yes       |
 | Trusted Services + KV Soft delete 90 days + FW allow Appgw public IP and Appgw Subnet + Service endpoints      | Yes       |
 | Trusted Services + KV Soft delete 90 days + FW allow Appgw Subnet + Service endpoints      | Yes       |
+| Trusted Services + KV Soft delete 7 days + FW allow Appgw Subnet + Service endpoints      | Yes       |
 | Trusted Services + KV Soft delete 7 days + FW allow Appgw public IP + Service endpoints   | No        |
 | Trusted Services + KV Soft delete 90 days + FW allow Appgw public IP | Yes |
 | KV Soft delete 90 days + FW allow Appgw public IP | No |
